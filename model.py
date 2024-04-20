@@ -33,8 +33,8 @@ def get(data):
     predictions = model.predict(userdata)[0]
     return str(predictions)
 
-def get_percentiles(data):
-    d = {}
+def get_percentage(data):
+    dict = {}
     hour = data["hour"]
     day = data["day"]
     light = data["light"]
@@ -43,15 +43,28 @@ def get_percentiles(data):
     for district in range(1, 13):
         userdata = pd.DataFrame([[district, hour, day, light, condition]], columns=columns)
         prediction = model.predict(userdata)[0]
-        d[convert(district)] = prediction/52
-    print(d)
-    return d
+        dict[convert(district)] = prediction/52
+    print(dict)
+    return dict
 
+def get_day(data):
+    list = []
+    district = data["district"]
+    day = data["day"]
+    light = data["light"]
+    condition = data["condition"]
+    columns = ["District", "AccidentHour", "DayOfWeek", "LightingCondition", "RoadCondition"]
+    for hour in range(24):
+        userdata = pd.DataFrame([[district, hour, day, light, condition]], columns=columns)
+        prediction = model.predict(userdata)[0]/52
+        list.append(prediction)
+    return list
+        
 # mock = {
-#     "hour" : 8,
+#     "district": 6,
 #     "day" : 3,
 #     "light" : 1,
 #     "condition" : 1
 # }
 
-# print(get_percentiles(mock))
+# print(get_day(mock))

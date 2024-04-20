@@ -6,24 +6,6 @@ import model
 
 
 def create_map(data):
-    # plz_shape_df = gpd.read_file("./DataSet/plz-5stellig.shp.zip", dtype={'plz': str})
-
-    # plz_region_df = pd.read_csv(
-    #     "./DataSet/zuordnung_plz_ort.csv", 
-    #     sep=',', 
-    #     dtype={'plz': str}
-    # )
-    # plz_region_df.drop('osm_id', axis=1, inplace=True)
-
-    # germany_df = pd.merge(
-    #     left=plz_shape_df, 
-    #     right=plz_region_df, 
-    #     on='plz',
-    #     how='inner'
-    # )
-    # germany_df.drop(['note'], axis=1, inplace=True)
-
-    # berlin_df = germany_df.query('ort == "Berlin"')
 
     berlin_neighbourhoods_df = gpd.read_file("./DataSet/neighbourhoods.geojson")
     berlin_neighbourhoods_df = berlin_neighbourhoods_df[~berlin_neighbourhoods_df['neighbourhood_group'].isnull()]
@@ -47,21 +29,7 @@ def create_map(data):
 
     berlin_df.drop(['note'], axis=1, inplace=True)
 
-    # probabilities = {
-    #     'Pankow': 0.99,
-    #     'Charlottenburg-Wilm.': 0.49,
-    #     'Treptow - Köpenick': 0.59,
-    #     'Reinickendorf': 0.0,
-    #     'Mitte': 0.39,
-    #     'Friedrichshain-Kreuzberg': 0.19,
-    #     'Spandau': 0.88,
-    #     'Steglitz - Zehlendorf':0.11,
-    #     'Tempelhof - Schöneberg':0.29,
-    #     'Neukölln':0.99,
-    #     'Marzahn - Hellersdorf':0.69,
-    #     'Lichtenberg': 0.44
-    # }
-    probabilities = model.get_percentiles(data)
+    probabilities = model.get_percentage(data)
 
     cmap = plt.colormaps.get_cmap("coolwarm")
     min_prob=min(probabilities.values())
@@ -93,13 +61,4 @@ def create_map(data):
 
     ax.set(title='Accident Probability by District', aspect=1.3)
 
-    plt.savefig("./Map.jpg")
-
-mock = {
-    "hour" : 8,
-    "day" : 3,
-    "light" : 1,
-    "condition" : 1
-}
-
-# create_map(mock)
+    plt.savefig("./Images/Map.jpg")
