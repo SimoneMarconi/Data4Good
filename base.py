@@ -32,3 +32,21 @@ userdata = pd.DataFrame([[District, AccidentHour, DayOfWeek, LightingCondition, 
 prediction = model.predict(userdata)
 print("Predicted number of accidents:", prediction[0])
 print("Probability of the happening of the accident:", prediction[0]/54)
+
+
+# grid = {
+#     'n_estimators': [100, 200, 300, 400, 500],
+#     'max_features': [1.0, 'sqrt', 'log2'],
+#     'max_depth': [None, 5, 10, 15, 20],
+#     'min_samples_split': [2, 5, 10],
+#     'min_samples_leaf': [1, 2, 4],
+#     'bootstrap': [True, False],
+#     'random_state': [18]
+# }
+# ## show start time
+# print(datetime.now())
+# ## Grid Search function
+# CV = GridSearchCV(estimator=RandomForestRegressor(), param_grid=grid, cv= 5)
+# CV.fit(X_train, y_train)
+# ## show end time
+# print(datetime.now())
