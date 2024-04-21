@@ -34,7 +34,7 @@ def day():
     data = request.json
     if validate_day(data):
         day = model.get_day(data)
-        g = graph.draw(day)
+        graph.draw(day)
         return send_file("./Images/Graph.jpg", mimetype="image/gif")
     else:
         abort(422)

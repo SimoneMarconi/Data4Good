@@ -31,7 +31,7 @@ The Accident Prediction API utilizes a machine learning model to predict the pro
 - **Training Process**: The model is trained using the collected dataset, with features as inputs and the number of accidents as the target variable. The dataset is split into training and testing sets to evaluate the model's performance.
 
 ### Model Evaluation
-- **Performance Metrics**: The model's performance is evaluated using Mean Squared Error (MSE). This metric help assess how well the model generalizes to unseen data and predicts accident probabilities accurately.
+- **Performance Metrics**: The model's performance is evaluated using Mean Squared Error (MSE) and coefficient of determination (R^2). These metrics help assess how well the model generalizes to unseen data and predicts accident probabilities accurately.
 
 ### Model Deployment
 - **Serialization**: Once trained, the model with the best hyperparameters is serialized using pickle to save its state to a file.
