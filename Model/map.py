@@ -2,7 +2,7 @@ import geopandas as gpd
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.colors import Normalize
-import model
+import Model.model as model
 
 
 def create_map(data):
