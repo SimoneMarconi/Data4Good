@@ -1,4 +1,4 @@
-from flask import Flask, request, abort, send_file
+from flask import Flask, request, abort, send_file, Response
 import Model.model as model
 import Model.map as map
 import Model.graph as graph
@@ -9,16 +9,14 @@ def probability():
     query = request.args.to_dict(flat=False)
     print(query)
     data = request.json
-    if validate_probability(data):
+    if validate_probability(data) == "ok":
         prediction = model.get(data)
         if query["mode"][0] == "percentage":
             return str(float(prediction)/52)
         elif query["mode"][0] == "number":
             return prediction
-        else:
-            abort(400)
     else:
-        abort(422)
+        return Response("Wrong request format", status=422)
 
 @app.route("/image", methods=["POST"])
 def image():
@@ -27,7 +25,7 @@ def image():
         map.create_map(data)
         return send_file("./Images/Map.jpg", mimetype="image/gif")
     else:
-        abort(422)
+        return Response("Wrong request format", status=422)
 
 @app.route("/day", methods=["POST"])
 def day():
@@ -37,9 +35,11 @@ def day():
         graph.draw(day)
         return send_file("./Images/Graph.jpg", mimetype="image/gif")
     else:
-        abort(422)
+        return Response("Wrong request format", status=422)
 
 def validate_probability(data):
+    if data["district"] and data["hour"] and data["light"] and data["condition"] == False:
+        return Response("Missing parameters", status=400)
     if data["district"] < 1 or data["district"] > 12:
         return None
     if data["hour"] < 0 or data["hour"] > 23:
