@@ -1,7 +1,7 @@
 from flask import Flask, request, abort, send_file
-import model
-import map
-import graph
+import Model.model as model
+import Model.map as map
+import Model.graph as graph
 app = Flask(__name__)
 
 @app.route("/probability", methods=["POST"])

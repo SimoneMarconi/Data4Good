@@ -59,12 +59,3 @@ def get_day(data):
         prediction = model.predict(userdata)[0]/52
         list.append(prediction)
     return list
-        
-# mock = {
-#     "district": 6,
-#     "day" : 3,
-#     "light" : 1,
-#     "condition" : 1
-# }
-
-# print(get_day(mock))
