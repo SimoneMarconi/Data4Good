@@ -7,7 +7,6 @@ def draw(values):
     y = values
     y = [i*100 for i in y]
     x = np.linspace(0, 24, len(y))  # Create evenly spaced x values
-    print(len(y))
 
     norm = Normalize(vmin=min(y), vmax=max(y))
     # Define new x values for interpolation
