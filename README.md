@@ -7,7 +7,7 @@ The Accident Prediction API is a machine learning-based service that predicts th
 ### Endpoints
 1. `/probability`: Predicts the probability of accidents occurring based on provided data inputs.
 2. `/day`: Generates a graph depicting accident probabilities over a day based on provided data inputs.
-3. `/image`: Generates a heatmap image depicting accident probability by district based on provided data inputs.
+3. `/image`: Generates an heatmap image depicting accident probability by district based on provided data inputs.
 
 ### Features
 - **Accident Probability Prediction**: The API provides accurate predictions of accident probabilities, helping users make informed decisions and take preventive measures.
