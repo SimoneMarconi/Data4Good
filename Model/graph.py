@@ -1,3 +1,4 @@
+from io import BytesIO
 from matplotlib.colors import Normalize
 import numpy as np
 import matplotlib.pyplot as plt
@@ -22,4 +23,13 @@ def draw(values):
     plt.title('Accident trend over time')
     plt.xticks([i for i in range(0,24)])
     plt.xlim(0,23)
-    plt.savefig('./Images/Graph.jpg')
+
+    # Save the plot to a BytesIO object
+    img_bytes_io = BytesIO()
+    plt.savefig(img_bytes_io, format='jpeg')
+    img_bytes_io.seek(0)
+    
+    # Clear the plot to avoid memory leaks
+    plt.clf()
+    
+    return img_bytes_io.getvalue()

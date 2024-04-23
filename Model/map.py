@@ -1,3 +1,4 @@
+from io import BytesIO
 import geopandas as gpd
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -61,4 +62,13 @@ def create_map(data):
 
     ax.set(title='Accident Probability by District', aspect=1.3)
 
-    plt.savefig("./Images/Map.jpg")
+   
+    # Save the plot to a BytesIO object
+    img_bytes_io = BytesIO()
+    plt.savefig(img_bytes_io, format='jpeg')
+    img_bytes_io.seek(0)
+    
+    # Clear the plot to avoid memory leaks
+    plt.clf()
+    
+    return img_bytes_io.getvalue()

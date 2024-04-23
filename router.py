@@ -1,3 +1,4 @@
+from io import BytesIO
 from flask import Flask, request, abort, send_file, Response
 import Model.model as model
 import Model.map as map
@@ -22,8 +23,8 @@ def probability():
 def image():
     data = request.json
     if validate_image(data):
-        map.create_map(data)
-        return send_file("./Images/Map.jpg", mimetype="image/gif")
+        img = map.create_map(data)
+        return send_file(BytesIO(img), mimetype="image/gif")
     else:
         return Response("Wrong request format", status=422)
 
@@ -32,8 +33,8 @@ def day():
     data = request.json
     if validate_day(data):
         day = model.get_day(data)
-        graph.draw(day)
-        return send_file("./Images/Graph.jpg", mimetype="image/gif")
+        img = graph.draw(day)
+        return send_file(BytesIO(img), mimetype="image/gif")
     else:
         return Response("Wrong request format", status=422)
 
