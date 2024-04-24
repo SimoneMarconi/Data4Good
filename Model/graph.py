@@ -15,8 +15,8 @@ def draw(values):
 
     # Interpolate y values for the new x values
     y_interp = np.interp(x_interp, x, y)
-
     # Plot the scatter plot with interpolated colors
+ 
     plt.scatter(x_interp, y_interp, c=cm.coolwarm(norm(y_interp)), edgecolor="none", s=15)
     plt.xlabel('Hours')
     plt.ylabel('Probabilities (%)')
