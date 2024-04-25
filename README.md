@@ -171,4 +171,4 @@ This endpoint generates a graph depicting accident probabilities over a day base
 - 1) Import the anaconda environment and download all the dependencies with "conda env create -n Hackathon --file environment.yml", this will also automatically install all the dependencies.
 - 2) Activate the anaconda environment with "conda activate Hackathon".
 - 3) Run the Flask app with "flask --app router run" in the base directory.
-- 4) Enjoy your testing..
+- 4) Enjoy your testing.
