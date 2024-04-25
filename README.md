@@ -1,3 +1,9 @@
+# Traffic Accident Predictor API with Random Forest Regression
+
+![Version](https://img.shields.io/badge/Version-0.1.0-brightgreen)
+![Language](https://img.shields.io/badge/Language-python-blue)
+![License](https://img.shields.io/badge/License-MIT-red)
+---
 
 ## Introduction to the API
 
